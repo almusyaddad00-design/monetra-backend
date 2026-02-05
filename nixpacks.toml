@@ -8,11 +8,8 @@ cmds = ["cd backend && composer install --no-interaction --optimize-autoloader"]
 cmds = [
     "cd backend && cp .env.example .env",
     "cd backend && php artisan key:generate --force",
-    "cd backend && php artisan config:cache",
-    "cd backend && php artisan route:cache",
-    "cd backend && php artisan view:cache",
     "cd backend && npm install && npm run build"
 ]
 
 [start]
-cmd = "cd backend && php artisan serve --host=0.0.0.0 --port=$PORT"
+cmd = "cd backend && php artisan config:clear && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=$PORT"
