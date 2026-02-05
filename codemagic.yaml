@@ -13,5 +13,6 @@ workflows:
         script: |
           cd mobile
           flutter build apk --debug
+          mv build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/Monetra.apk
     artifacts:
       - mobile/build/**/outputs/**/*.apk
