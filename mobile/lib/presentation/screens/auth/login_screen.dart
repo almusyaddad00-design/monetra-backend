@@ -84,28 +84,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
-                  // Monetra Logo with Glow Effect
+                  const SizedBox(height: 60),
+                  // Monetra Logo
                   Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue.withValues(alpha: 0.2),
-                            blurRadius: 100,
-                            spreadRadius: 20,
-                          ),
-                        ],
-                      ),
+                    child: Hero(
+                      tag: 'app_logo',
                       child: Image.asset(
                         'assets/images/logo_full.png',
-                        height: 200, // Slightly larger for impact
+                        height: 120, // Adjusted for landscape logo
                         fit: BoxFit.contain,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 50),
                   Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
