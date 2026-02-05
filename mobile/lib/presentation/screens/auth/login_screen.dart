@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart'; // For kIsWeb
-import 'dart:html' as html; // For window.location
+import '../../../core/utils/web_utils.dart'
+    if (dart.library.html) '../../../core/utils/web_utils_web.dart'
+    as web_utils;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,12 +27,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     // Check for Google Auth token in URL (for Web)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (kIsWeb) {
-        final uri = Uri.parse(html.window.location.href);
-        final token = uri.queryParameters['token'];
+        final token = web_utils.getWebToken();
         if (token != null) {
           ref.read(authStateProvider.notifier).loginWithToken(token);
           // Clean the URL
-          html.window.history.replaceState(null, 'Login', '/#/login');
+          web_utils.cleanWebUrl();
         }
       }
     });
@@ -46,7 +47,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _loginWithGoogle() {
     if (kIsWeb) {
       // Redirect to Laravel Google Auth endpoint
-      html.window.location.href = 'http://127.0.0.1:8000/auth/google';
+      web_utils.redirectToGoogleAuth();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

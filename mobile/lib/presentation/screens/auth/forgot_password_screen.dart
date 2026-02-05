@@ -48,11 +48,13 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         _otpSent = true;
         _isLoading = false;
       });
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Kode OTP telah dikirim ke email Anda')),
       );
     } catch (e) {
       setState(() => _isLoading = false);
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Gagal: $e')),
       );
@@ -72,6 +74,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       );
       setState(() => _isLoading = false);
 
+      if (!mounted) return;
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -89,6 +92,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       );
     } catch (e) {
       setState(() => _isLoading = false);
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Gagal: $e')),
       );

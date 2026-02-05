@@ -6,6 +6,7 @@ $kernel->bootstrap();
 
 use App\Models\User;
 use App\Models\Wallet;
+use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 
 $email = 'test_' . time() . '@example.com';
@@ -23,7 +24,7 @@ $categories = [
     ['name' => 'Makan & Minum', 'type' => 'pengeluaran'],
 ];
 
-\App\Models\Wallet::create([
+Wallet::create([
     'user_id' => $user->id,
     'type' => 'tunai',
     'name' => 'Dompet Utama',
@@ -31,7 +32,7 @@ $categories = [
 ]);
 
 foreach ($categories as $cat) {
-    \App\Models\Category::create([
+    Category::create([
         'user_id' => $user->id,
         'name' => $cat['name'],
         'type' => $cat['type'],
