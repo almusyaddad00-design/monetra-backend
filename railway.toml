@@ -1,0 +1,4 @@
+[build]
+path = "backend"
+builder = "NIXPACKS"
+watchPatterns = ["backend/**"]
