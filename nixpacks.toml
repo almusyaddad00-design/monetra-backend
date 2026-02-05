@@ -6,6 +6,7 @@ cmds = ["cd backend && composer install --no-interaction --optimize-autoloader"]
 
 [phases.build]
 cmds = [
+    "cd backend && cp .env.example .env",
     "cd backend && php artisan key:generate --force",
     "cd backend && php artisan config:cache",
     "cd backend && php artisan route:cache",
