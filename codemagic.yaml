@@ -1,0 +1,18 @@
+workflows:
+  android-debug:
+    name: Android Debug Build
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get dependencies
+        script: |
+          cd mobile
+          flutter pub get
+      - name: Build Android Debug APK
+        script: |
+          cd mobile
+          flutter build apk --debug
+    artifacts:
+      - mobile/build/**/outputs/**/*.apk
